@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-/* function List () { */
-  class List extends Component {
+import { useState, useEffect } from 'react';
+function List () { 
+
   // Initialize the state
-
-  constructor(props){
-    super(props);
-    this.state = {
-      list: []
-    }
-  }
-
-  // Fetch the list on first mount
-  componentDidMount() {
-    this.getList();
-  }
+  const [produstsList, setProductList] = useState([]);
+  useEffect(() => {
+    getList()
+  }, []);
 
   // Retrieves the list of items from the Express app
-  getList = () => {    
-    axios('/api/productos')
-    .then(list => this.setState({ list:list.data }))
+   const getList = async() => {    
+    let datos = await axios.get('/api/productos')
+    setProductList(datos.data)
   }
 
-  render() {
-    const { list } = this.state;
+ 
 
     return (
       
@@ -36,9 +28,9 @@ import axios from 'axios'
             <th>Precio</th>
 		      </tr>
             
-            {list.map((item,i) => {
+            {produstsList.map((item,i) => {
               return(
-                <tr>
+                <tr key={i}>
                 <td>{item.name}</td>
                 <td>{item.relevancia}/10</td>
                 <td>{item.price} $</td>
@@ -55,10 +47,9 @@ import axios from 'axios'
     
       </div>
     );
-  }
-}
+          }
 
-export default List;
+export default List ;
 
 
 {/* <div key={i}>
