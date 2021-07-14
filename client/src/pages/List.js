@@ -35,9 +35,6 @@ function List () {
                 <td>{item.relevancia}/10</td>
                 <td>{item.price} $</td>
               </tr>
-
-
-               
               );
             })}
           </table>
