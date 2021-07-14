@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios'
-class List extends Component {
+/* function List () { */
+  class List extends Component {
   // Initialize the state
+
   constructor(props){
     super(props);
     this.state = {
@@ -24,29 +26,41 @@ class List extends Component {
     const { list } = this.state;
 
     return (
+      
       <div className="App">
-        <h1>List of Items</h1>
-        {/* Check to see if any items are found*/}
-        {list.length ? (
-          <div>
-            {/* Render the list of items */}
+        <h1>productos:</h1>
+          <table>
+          <tr>
+			      <th>Nombre</th>
+			      <th>Relevancia</th>
+            <th>Precio</th>
+		      </tr>
+            
             {list.map((item,i) => {
               return(
-                <div key={i}>
-                  <p>{item.name}</p>
-                </div>
+                <tr>
+                <td>{item.name}</td>
+                <td>{item.relevancia}/10</td>
+                <td>{item.price} $</td>
+              </tr>
+
+
+               
               );
             })}
-          </div>
-        ) : (
-          <div>
-            <h2>No List Items Found</h2>
-          </div>
-        )
-      }
+          </table>
+       
+        
+      
+    
       </div>
     );
   }
 }
 
 export default List;
+
+
+{/* <div key={i}>
+<p>{item.name}</p>
+</div> */}
