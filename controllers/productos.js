@@ -11,7 +11,22 @@ const routers = {
         
             next(new Error('error retrieving books'))
           }
-    }/* ,
+    },
+    getProduct: async(req, res) => {
+        try {
+           const  AllProducts  = await ProductSchema.find({ name: 'Lieutenant'}||{fabricante:'mkmp'})
+
+       console.log(AllProducts )
+           res.status(200).json(AllProducts)
+         } catch (error) {
+           console.error('> error retrieving all books: ', error.message)
+       
+           next(new Error('error retrieving books'))
+         }
+   }
+    
+    
+    /* ,
     postfilm: async(req, res) => {
         // let data = await films.postPelicula(`http://www.omdbapi.com/?t=${title}${apiKey}`)
         let nameF = req.body.Title
