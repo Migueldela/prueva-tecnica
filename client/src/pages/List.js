@@ -15,18 +15,20 @@ function List () {
     setProductList(datos.data)
   }
 
-  const getProduct = async() => {    
-    
-    let datos = await axios.get(`/api/producto/{}`)
+  const getProduct = async(event) => {    
+    let product= event.target.value
+    let datos = await axios.get(`/api/producto/{product}`)
     setProductList(datos.data)
   }
-
+  useEffect(() => {
+    getList()
+  }, []);
  
 
     return (
       
       <div className="App">
-          <form action="handleSubmit">
+            <form action="getProduct">
             <input type="text" name="name" />
             <input type="submit" />
             </form>

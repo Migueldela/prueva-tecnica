@@ -13,8 +13,10 @@ const routers = {
           }
     },
     getProduct: async(req, res) => {
+        console.log(req.params)
+        let word = req.params.p
         try {
-           const  AllProducts  = await ProductSchema.find({ name: 'Lieutenant'}||{fabricante:'mkmp'})
+           const  AllProducts  = await ProductSchema.find({$or:[{"name":`${word}`},{"fabricante":`${word}`}]})
 
        console.log(AllProducts )
            res.status(200).json(AllProducts)
