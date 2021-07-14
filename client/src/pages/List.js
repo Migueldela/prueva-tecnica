@@ -15,11 +15,24 @@ function List () {
     setProductList(datos.data)
   }
 
+  const getProduct = async() => {    
+    
+    let datos = await axios.get(`/api/producto/{}`)
+    setProductList(datos.data)
+  }
+
  
 
     return (
       
       <div className="App">
+          <form action="handleSubmit">
+            <input type="text" name="name" />
+            <input type="submit" />
+            </form>
+
+
+
         <h1>productos:</h1>
           <table>
           <tr>
