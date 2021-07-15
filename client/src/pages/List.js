@@ -9,11 +9,9 @@ function List () {
 
   
   useEffect(() => {
-    getList("")
-  }, [product]);
-  useEffect(() => {
-    getList()
-  }, []);
+    setProductList(["",""])
+  }, [setProduct()]);
+  
 
   // Retrieves the list of items from the Express app
    const getList = async() => {    
@@ -30,9 +28,9 @@ function List () {
     setProduct(datos.data) 
   }
        
- /*  useEffect(() => {
+   useEffect(() => {
     getList()
-  }, []); */
+  }, []); 
  console.log("hola")
     return (
       
@@ -58,7 +56,7 @@ function List () {
                 <td>{item.relevancia}/10</td>
                 <td>{item.price} $</td>
               </tr>)})}
-            {produstsList.map((item,i) => {
+             {product.map((item,i) => {
               return(
                 <tr key={i}>
                 <td>{item.name}</td>
@@ -66,7 +64,7 @@ function List () {
                 <td>{item.price} $</td>
               </tr>
               );
-            })}
+            })} 
           </table>
        
         
