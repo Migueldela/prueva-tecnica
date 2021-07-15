@@ -13,13 +13,13 @@ const routers = {
           }
     },
     getProduct: async(req, res) => {
-        console.log(req.params)
+        console.log(req.params.p)
         let word = req.params.p
         try {
-           const  AllProducts  = await ProductSchema.find({$or:[{"name":`${word}`},{"fabricante":`${word}`}]})
+           const  Products  = await ProductSchema.find({$or:[{"name":`${word}`},{"fabricante":`${word}`}]})
 
-       console.log(AllProducts )
-           res.status(200).json(AllProducts)
+       console.log(Products )
+           res.status(200).json(Products)
          } catch (error) {
            console.error('> error retrieving all books: ', error.message)
        

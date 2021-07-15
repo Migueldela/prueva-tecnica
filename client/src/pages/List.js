@@ -5,6 +5,12 @@ function List () {
 
   // Initialize the state
   const [produstsList, setProductList] = useState([]);
+  const [product, setProduct] = useState([]);
+
+  
+  useEffect(() => {
+    getList("")
+  }, [product]);
   useEffect(() => {
     getList()
   }, []);
@@ -16,19 +22,22 @@ function List () {
   }
 
   const getProduct = async(event) => {    
-    let product= event.target.value
-    let datos = await axios.get(`/api/producto/{product}`)
-    setProductList(datos.data)
+    event.preventDefault();
+    let product= event.target.elements.name.value 
+    console.log(product)
+     let datos = await axios.get(`/api/producto/${product}`)
+     console.log(datos.data)
+    setProduct(datos.data) 
   }
-  useEffect(() => {
+       
+ /*  useEffect(() => {
     getList()
-  }, []);
- 
-
+  }, []); */
+ console.log("hola")
     return (
       
       <div className="App">
-            <form action="getProduct">
+            <form onSubmit={getProduct}>
             <input type="text" name="name" />
             <input type="submit" />
             </form>
@@ -42,7 +51,13 @@ function List () {
 			      <th>Relevancia</th>
             <th>Precio</th>
 		      </tr>
-            
+          {produstsList.map((item,i) => {
+              return(
+                <tr key={i}>
+                <td>{item.name}</td>
+                <td>{item.relevancia}/10</td>
+                <td>{item.price} $</td>
+              </tr>)})}
             {produstsList.map((item,i) => {
               return(
                 <tr key={i}>
