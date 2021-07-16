@@ -9,7 +9,7 @@ function List () {
 
   
   useEffect(() => {
-    setProductList(["",""])
+    setProductList([])
   }, [setProduct()]);
   
 
