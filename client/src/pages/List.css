@@ -1,0 +1,24 @@
+body {
+  background-color: rgb(194, 225, 226);
+}
+#todo {
+    border-collapse: collapse;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+
+}
+table ,td ,th{
+border: 2px solid black;
+border-collapse: collapse;
+margin: 5px;
+padding: 5px;
+}
+ table{
+     background-color: rgb(228, 228, 228);
+ }
+ button{
+     background-color: rgb(211, 185, 223);
+     padding: 3px 15px;
+ }

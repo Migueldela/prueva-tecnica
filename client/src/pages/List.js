@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import "./List.css"
 import { useState, useEffect } from 'react';
 function List () { 
 
   // Initialize the state
   const [produstsList, setProductList] = useState([]);
-  const [product, setProduct] = useState([]);
-
-  
+  // const [product, setProduct] = useState([]);
+ 
+/*   
   useEffect(() => {
     setProductList([])
-  }, [setProduct()]);
-  
+  }, [setProduct()]); */
+  useEffect(() => {
+    getList()
+  }, []); 
 
   // Retrieves the list of items from the Express app
    const getList = async() => {    
@@ -25,16 +28,14 @@ function List () {
     console.log(product)
      let datos = await axios.get(`/api/producto/${product}`)
      console.log(datos.data)
-    setProduct(datos.data) 
+     setProductList(datos.data) 
   }
        
-   useEffect(() => {
-    getList()
-  }, []); 
+ 
  console.log("hola")
     return (
       
-      <div className="App">
+      <div id="todo" className="App">
             <form onSubmit={getProduct}>
             <input type="text" name="name" />
             <input type="submit" />
@@ -48,6 +49,7 @@ function List () {
 			      <th>Nombre</th>
 			      <th>Relevancia</th>
             <th>Precio</th>
+            <th>info del producto</th>
 		      </tr>
           {produstsList.map((item,i) => {
               return(
@@ -55,8 +57,9 @@ function List () {
                 <td>{item.name}</td>
                 <td>{item.relevancia}/10</td>
                 <td>{item.price} $</td>
+                <td><button key={i}>+ info</button></td>
               </tr>)})}
-             {product.map((item,i) => {
+            {/*  {product.map((item,i) => {
               return(
                 <tr key={i}>
                 <td>{item.name}</td>
@@ -64,7 +67,7 @@ function List () {
                 <td>{item.price} $</td>
               </tr>
               );
-            })} 
+            })}  */}
           </table>
        
         
